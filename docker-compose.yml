@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  tsup:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    command: ["gunicorn", "server:init_app", "--bind", "0.0.0.0:80", "--worker-class", "aiohttp.GunicornWebWorker"]
+    depends_on:
+      - db
+    env_file:
+      - secret_environments
+    ports:
+      - "6100:80"
+
+  public_relations:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    command: ["python", "telegram_handler.py"]
+    depends_on:
+      - db
+    env_file:
+      - secret_environments
+
+  db:
+    image: "postgres:11.2-alpine"
+    volumes:
+      - "/var/control_tower/db/:/var/localhostib/postgresql/data/"
+    environment:
+      POSTGRES_PASSWORD: tower_mayday
+      POSTGRES_USER: control_tower
+    ports:
+      - "127.0.0.1:5434:5432"
