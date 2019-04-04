@@ -1,4 +1,6 @@
 __pycache__
 secret_environments
+settings_local.py
 
 .idea
+.pytest_cache

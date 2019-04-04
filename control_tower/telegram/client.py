@@ -7,7 +7,7 @@ from control_tower import settings
 
 logger = logging.getLogger(__name__)
 
-SEND_MESSAGE_URI = "https://api.telegram.org/bot{}/sendMessage".format(settings.telegram_token)
+SEND_MESSAGE_URI = "https://api.telegram.org/bot{}/sendMessage".format(settings.TELEGRAM_TOKEN)
 
 
 class TelegramClient:
@@ -21,4 +21,4 @@ class TelegramClient:
             "text": message
         }
 
-        await self.session.post(SEND_MESSAGE_URI.format(settings.telegram_token), data=data)
+        await self.session.post(SEND_MESSAGE_URI.format(settings.TELEGRAM_TOKEN), data=data)

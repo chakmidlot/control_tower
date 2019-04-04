@@ -15,6 +15,7 @@ create table if not exists last_level (
 create index if not exists last_level_device_id on last_level (device_id);
 '''
 
+
 SELECT_LEVEL_SQL = '''
 select "level"
   from last_level
@@ -37,4 +38,21 @@ SELECT_USERS_SQL = '''
 select telegram_user_id
   from telegram_users
   where device_id = %s;
+'''
+
+SELECT_USER_DEVICES_SQL = '''
+select device_id
+  from telegram_users
+  where telegram_user_id = %s;
+'''
+
+DELETE_DEVIDE = '''
+delete from telegram_users 
+  where device_id = %s 
+  and telegram_user_id = %s;
+'''
+
+DELETE_ALL_DEVIDES = '''
+delete from telegram_users 
+  where telegram_user_id = %s;
 '''

@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  public_relations:
+    environment:
+      ENV: test
+    volumes:
+      - ".:/app"
+    command: ["pytest", "tests"]
+
+  db:
+    environment:
+      POSTGRES_PASSWORD: tower_mayday
+      POSTGRES_USER: control_tower
+    ports:
+      - "127.0.0.1:5434:5432"

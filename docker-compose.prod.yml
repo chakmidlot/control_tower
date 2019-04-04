@@ -24,4 +24,8 @@ services:
       - secret_environments
 
   db:
-    image: "postgres:11.2-alpine"
+    volumes:
+      - "/var/control_tower/db/:/var/localhostib/postgresql/data/"
+    environment:
+      POSTGRES_PASSWORD: tower_mayday
+      POSTGRES_USER: control_tower

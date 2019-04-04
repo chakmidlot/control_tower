@@ -1,8 +1,7 @@
 import asyncio
 import logging
 
-from control_tower.listen_telegram import answer_requests
-
+from control_tower.telegram.listen import TelegramListener
 
 app_logger = logging.getLogger("control_tower")
 app_logger.setLevel(logging.DEBUG)
@@ -22,4 +21,4 @@ root_logger.addHandler(ch)
 
 
 if __name__ == '__main__':
-    asyncio.run(answer_requests())
+    asyncio.run(TelegramListener().listen())

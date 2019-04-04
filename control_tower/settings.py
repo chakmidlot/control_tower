@@ -1,12 +1,18 @@
 import os
 
-telegram_token = os.getenv("TELEGRAM_TOKEN")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
-dsn = 'dbname=postgres user=control_tower password=tower_mayday host=db port=5432'
+DB_DSN = 'dbname=postgres user=control_tower password=tower_mayday host=db port=5432'
 
 
-class notification_level:
-    warning = 40
-    critical = 15
+class NOTIFICATION_LEVEL:
+    WARNING = 40
+    CRITICAL = 15
 
-    reset = 80
+    RESET = 80
+
+
+try:
+    from control_tower.settings_local import *
+except ImportError:
+    pass
