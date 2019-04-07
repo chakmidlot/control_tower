@@ -1,4 +1,4 @@
-#  
+#
 #                                     sync_tokens
 #                                     =============
 #                                     device_id     ---+
@@ -15,7 +15,7 @@
 #  ==============        |    name
 #  telegram_id           |    charge_level
 #  device_id      -------+    update_time
-#  
+#
 
 INITIALIZE_DB = '''
 create table if not exists devices (
