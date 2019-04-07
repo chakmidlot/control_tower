@@ -1,8 +1,10 @@
 import os
 
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 DB_DSN = 'dbname=postgres user=control_tower password=tower_mayday host=db port=5432'
+
+TELEGRAM_HOST = "https://api.telegram.org"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 
 class NOTIFICATION_LEVEL:

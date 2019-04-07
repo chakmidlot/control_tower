@@ -36,10 +36,10 @@ class Commands:
         return "Not implemented"
 
     async def removedevice(self, telegram_id, options=None):
-        await self._db.remove_device(options, telegram_id)
+        await self._db.remove_telegram_device(options, telegram_id)
 
     async def lastlevel(self, telegram_id, options=None):
-        level = await self._db.get_last_level(options)
+        level = await self._db.get_last_level(telegram_id, options)
         if not level:
             return "No previous battery data"
         else:

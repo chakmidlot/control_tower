@@ -4,7 +4,7 @@ services:
   tsup:
     build:
       dockerfile: Dockerfile
-      context: .
+      context: ""
     command: ["gunicorn", "server:init_app", "--bind", "0.0.0.0:80", "--worker-class", "aiohttp.GunicornWebWorker"]
     depends_on:
       - db
@@ -16,7 +16,7 @@ services:
   public_relations:
     build:
       dockerfile: Dockerfile
-      context: .
+      context: ""
     command: ["python", "telegram_handler.py"]
     depends_on:
       - db

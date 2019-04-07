@@ -7,7 +7,7 @@ from control_tower import settings
 
 logger = logging.getLogger(__name__)
 
-SEND_MESSAGE_URI = "https://api.telegram.org/bot{}/sendMessage".format(settings.TELEGRAM_TOKEN)
+SEND_MESSAGE_URI = "{}/bot{}/sendMessage".format(settings.TELEGRAM_HOST, settings.TELEGRAM_TOKEN)
 
 
 class TelegramClient:

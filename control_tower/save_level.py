@@ -9,7 +9,7 @@ MESSAGE = "{}. Battery level is {}"
 
 
 async def save(telegram, db, device_id, level):
-    last_level = (await db.get_last_level(device_id) + [(0,)])[0][0]
+    last_level = await db.get_last_level_by_device_id(device_id) or 100
     user_ids = await db.query_telegram_users(device_id)
 
     if level < NOTIFICATION_LEVEL.CRITICAL <= last_level:

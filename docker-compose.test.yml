@@ -1,14 +1,18 @@
 version: "3"
 
 services:
-  public_relations:
+  sut:
+    build:
+      dockerfile: Dockerfile
+      context: ""
+    depends_on:
+      - db
     environment:
       ENV: test
-    volumes:
-      - ".:/app"
     command: ["pytest", "tests"]
 
   db:
+    image: "postgres:11.2-alpine"
     environment:
       POSTGRES_PASSWORD: tower_mayday
       POSTGRES_USER: control_tower

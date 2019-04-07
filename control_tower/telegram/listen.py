@@ -12,7 +12,7 @@ from control_tower.db import Db
 logger = logging.getLogger(__name__)
 
 
-UPDATES_URL = "https://api.telegram.org/bot{}/getUpdates?offset={}&timeout=20"
+UPDATES_URL = "{}/bot{}/getUpdates?offset={}&timeout=20"
 
 SEND_MESSAGE_URL = "https://api.telegram.org/bot{}/sendMessage"
 
@@ -35,7 +35,7 @@ class TelegramListener:
                     await asyncio.sleep(5)
 
     async def get_updates(self, session):
-        async with session.get(UPDATES_URL.format(settings.TELEGRAM_TOKEN, self.update_id)) as resp:
+        async with session.get(UPDATES_URL.format(settings.TELEGRAM_HOST, settings.TELEGRAM_TOKEN, self.update_id)) as resp:
             update = await resp.json()
             if update['ok']:
                 for query in update['result']:
